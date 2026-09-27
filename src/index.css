@@ -1,0 +1,67 @@
+/*
+ * Global styles: base element reset, and the three selectable color themes (Midnight/Ember/
+ * Aurora) expressed as CSS custom properties. :root defines the default (Midnight) palette;
+ * each [data-theme='...'] block below overrides those same variables. App.tsx sets
+ * `document.documentElement.dataset.theme` to swap which block applies — App.css's component
+ * rules then reference these variables (var(--accent), var(--panel), etc.) instead of hardcoding
+ * colors, so they repaint automatically when the theme changes.
+ */
+:root {
+  color-scheme: dark;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --bg: #0e0f13;
+  --panel: #181a21;
+  --border: #2b2e38;
+  --text: #e5e7eb;
+  --text-muted: #9ca3af;
+  --accent: #7c5cff;
+  --accent-gradient: var(--accent);
+  --danger: #ef4444;
+}
+
+/* Red + yellow theme. */
+[data-theme='ember'] {
+  --bg: #190d09;
+  --panel: #2b140c;
+  --border: #4a2213;
+  --text: #fdf1e2;
+  --text-muted: #d8ab88;
+  --accent: #f59e0b;
+  --accent-gradient: linear-gradient(135deg, #ef4444, #f59e0b);
+  --danger: #f87171;
+}
+
+/* Teal + blue theme. */
+[data-theme='aurora'] {
+  --bg: #071a1c;
+  --panel: #0f2b2e;
+  --border: #17434a;
+  --text: #e2fbfd;
+  --text-muted: #8fd0d4;
+  --accent: #22d3ee;
+  --accent-gradient: linear-gradient(135deg, #22d3ee, #6366f1);
+  --danger: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
