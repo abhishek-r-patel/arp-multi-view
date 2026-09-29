@@ -10,6 +10,7 @@ import { ManageStreamsPanel } from './components/ManageStreamsPanel';
 import { StreamGrid } from './components/StreamGrid';
 import { HelpPanel } from './components/HelpPanel';
 import { LayoutIcon } from './components/LayoutIcon';
+import { navigate } from './router';
 import type { LayoutMode, StreamSource, ThemeName, TitleMode } from './types';
 import './App.css';
 
@@ -131,15 +132,26 @@ function App() {
     <div className={`app${isMaximized ? ' app--maximized' : ''}`}>
       <div className="app__corner-controls">
         {!isMaximized && (
-          <button
-            type="button"
-            className="icon-btn"
-            aria-label="Help"
-            title="How to use ARP Multi View"
-            onClick={() => setShowHelp(true)}
-          >
-            ℹ
-          </button>
+          <>
+            <button
+              type="button"
+              className="icon-btn"
+              aria-label="Back to version picker"
+              title="Back to version picker"
+              onClick={() => navigate('/')}
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              className="icon-btn"
+              aria-label="Help"
+              title="How to use ARP Multi View"
+              onClick={() => setShowHelp(true)}
+            >
+              ℹ
+            </button>
+          </>
         )}
         <button
           type="button"

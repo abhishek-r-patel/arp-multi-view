@@ -12,9 +12,12 @@ interface Props {
   target: YouTubeTarget;
   muted: boolean;
   playSignal?: number;
+  // Optional suggested playback quality ('hd1080', 'hd720', ...). Omit or pass 'default' to let
+  // YouTube choose. Only ever a hint: YouTube ignores it if the stream has no such rendition.
+  quality?: string;
 }
 
-export function YouTubePlayer({ target, muted, playSignal }: Props) {
+export function YouTubePlayer({ target, muted, playSignal, quality }: Props) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const playerRef = useRef<YT.Player | null>(null);
   // Mirrors `muted` into a ref so the one-time `onReady` callback below always reads the
@@ -90,6 +93,17 @@ export function YouTubePlayer({ target, muted, playSignal }: Props) {
       player.playVideo();
     }
   }, [playSignal]);
+
+  // Applies the v2 quality selector. Skipped entirely when no quality prop is passed (v1).
+  useEffect(() => {
+    if (!quality) {
+      return;
+    }
+    const player = playerRef.current;
+    if (player && typeof player.setPlaybackQuality === 'function') {
+      player.setPlaybackQuality(quality);
+    }
+  }, [quality, playSignal]);
 
   if (error) {
     return <div className="player-error">{error}</div>;

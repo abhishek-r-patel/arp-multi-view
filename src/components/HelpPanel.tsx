@@ -18,6 +18,17 @@ export function HelpPanel({ onClose }: Props) {
 
         <div className="help-panel__body">
           <section>
+            <h3>Versions</h3>
+            <p>
+              You are using <strong>version 1</strong> (the classic grid) at <code>/v1</code>. <strong>Version 2</strong>{' '}
+              at <code>/v2</code> is a different interface for the same job: search instead of pasting, up to 12
+              streams, a column slider, stacking chat panels, keyboard shortcuts, and shareable links. Use the{' '}
+              <strong>←</strong> button in the top-right corner to switch. Each version saves its own layout, so they
+              never overwrite each other.
+            </p>
+          </section>
+
+          <section>
             <h3>Adding streams</h3>
             <p>
               Paste one or more stream URLs into the box (one per line, or comma-separated) and click <strong>➕</strong>.
@@ -119,15 +130,19 @@ export function HelpPanel({ onClose }: Props) {
                 <strong>Maximize video grid / Show controls</strong> — hides or restores the header/toolbar/manage
                 panel so the grid fills the window.
               </li>
+              <li>
+                <strong>←</strong> — returns to the version picker.
+              </li>
             </ul>
           </section>
 
           <section>
             <h3>Themes &amp; persistence</h3>
             <p>
-              Three color themes (Midnight, Ember, Aurora) are selectable from the toolbar. Your stream list, layout,
-              spotlight selection, theme, and title/channel mode are saved in this browser's localStorage. There is
-              no app backend; the browser contacts YouTube and Kick for embeds and name lookups.
+              Three color themes (Midnight, Ember, Aurora) are selectable from the toolbar; they apply to version 1
+              only. Your stream list, layout, spotlight selection, theme, and title/channel mode are saved in this
+              browser's localStorage, separately from version 2's. There is no app backend; the browser contacts
+              YouTube and Kick for embeds and name lookups.
             </p>
           </section>
 

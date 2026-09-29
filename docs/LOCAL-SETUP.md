@@ -66,6 +66,11 @@ When Vite reports that it is ready, open the **Local** URL it prints. It is usua
 http://localhost:5173/
 ```
 
+That URL is the version picker. From there, choose **Version 1** (`/v1`, the classic grid) or
+**Version 2** (`/v2`, the collage). You can also open either route directly, for example
+`http://localhost:5173/v2`. Vite's dev server serves `index.html` for those paths, so they
+work on a hard refresh too.
+
 Keep the terminal open while using the app. Vite reloads the page when source files change.
 
 To access the dev server from another device on the same network, start it with:
@@ -86,6 +91,9 @@ Return to the terminal running Vite and press **Ctrl+C**. To run the project aga
 - **`npm.cmd ci` fails:** Confirm the terminal is in the folder containing `package.json` and `package-lock.json`, and that the machine can reach the npm registry. Then retry the install.
 - **Port 5173 is already in use:** Vite normally selects another available port and prints the URL to open. Use the URL from the terminal.
 - **The page loads but a stream does not:** Stream playback and title lookup connect directly to YouTube or Kick from your browser. Check network access and browser restrictions; corporate or school content filters may block those services.
+- **A version 2 chat panel stays blank:** Chat only renders while that stream is actually live — YouTube shows "Chat is disabled for this live stream" otherwise. A blank panel usually means the provider's chat page is being blocked from being framed, commonly by a corporate filter such as Zscaler. Use the **↗** button in the chat header to open it in a normal tab.
+- **Version 2 search finds nothing for a YouTube channel name:** Only Kick channel names can be searched. For YouTube, paste the live video URL or a `/channel/UC...` URL.
+- **`/v1` or `/v2` returns 404 on a static host:** History-based routing needs the host to serve `index.html` for unknown paths. `npm.cmd run dev` and `npm.cmd run preview` already do this, and `public/_redirects` covers the Cloudflare Pages deployment. Any other host needs its own rewrite rule to `index.html`.
 
 ## Optional project checks
 

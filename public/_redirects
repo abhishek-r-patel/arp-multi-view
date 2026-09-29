@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback.
+# The app uses History-API routing (/, /v1, /v2) with no per-route HTML file, so any unknown
+# path must be served index.html or a hard refresh on /v1 or /v2 returns 404.
+/*    /index.html   200

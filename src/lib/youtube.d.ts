@@ -36,6 +36,7 @@ declare global {
       unMute(): void;
       isMuted(): boolean;
       setVolume(volume: number): void;
+      setPlaybackQuality(suggestedQuality: string): void;
       destroy(): void;
     }
   }
